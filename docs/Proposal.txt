@@ -1,0 +1,34 @@
+CS411: Team A4 group 3 - Proposal
+Alexa, Anna, Anthony, Brandon, Rongda
+
+Idea 1:
+Goal:
+Our first, and main, idea revolves around food. The goal of the project is to  facilitate diet tracking. 
+
+Database:
+Users will have a database of their personal groceries (i.e., the food in their fridge) with expiration dates. We hope to make it very easy for users to enter and remove the food that they have.
+
+API’s:
+We look forward to using API’s to synthesize a multitude of factors related to food.
+API 1: an API that brings in calories and other dietary factors associated with the groceries entered by users.
+API 2: an API with recommended recipes — the goal here would be to not only display recipes that can be attained with the groceries in the users database, but also recipes that are missing a small number of ingredients
+API 3: an API for reminders (what’s expiring soon) + warnings (what food doesn’t go well together, like milk and orange juice)
+
+Third-party authentication:
+We still haven’t discussed this, but we will probably use a third-party authenticator that has the largest reach.
+
+Idea 2:
+
+Goal:
+Our second idea revolves around fashion. The goal of the project is to help users with their daily wardrobe choices. 
+
+Database:
+Users will have a database of their clothes. We hope to make the status of the available clothes (dirty, clean, semi-dirty, etc.) clear.  
+
+API’s:
+API 1: an API for the weather
+API 2: an API with fashion knowledge that helps users decide what to wear (colors, warmth, dress-code, etc.)
+
+
+Third-party authentication: 
+We still haven’t discussed this, but we will probably use a third-party authenticator that has the largest reach.
