@@ -1,16 +1,15 @@
-how user will mis-use website. Needs more what could go wrong.
+As a logged in user, I want to search for specific cuisine/restaurant for when I don’t want to cook. I want to use the search bar to look up a dish/cuisine/restaurant so I can find out where I will be eating that night. I hope to go somewhere either within walking distance or a short drive away. I want to be asked for permission to use my current location and then use Google Maps to open recommendations. Additionally, nearby restaurants will be searched with Spoon API.
 
-As a logged in user, I want to search for specific cuisine/restaurant for when I don’t want to cook. I want to use the search bar to look up a dish/cuisine/restaurant so I can find out where I will be eating that night. I hope to go somewhere either within walking distance or a short drive away. 
-comments
-user location info, where getting from etc. 
-link restaurant searching with spoon API 
+As a new user, if I try to search for restaurants and click the restaurant tab on the navigation bar, if I am not logged in, it will take me to the sign in and authentication page so I can either log in or create a new account.
 
-As a logged in user, I want to upload my current ingredients so that I can see what recipes I can make with the food in my pantry and fridge. I want to not only have everything I own logged into my program, but I also want to be able to add them easily. I want to be able to see what recipes I have the ingredients for, as well as what recipes I lack a small number of the ingredients to make. 
-comments
-how to filter data 
+As a logged in user, I want to upload my current ingredients so that I can see what recipes I can make with the food in my pantry and fridge. I want to not only have everything I own logged into my program, but I also want to be able to add them easily. I want to be able to see what recipes I have the ingredients for, as well as what recipes I lack a small number of the ingredients to make. I want to be able to filter ingredients by expiration date, so I can see what I need to use first, and filter by foods I have used previously and frequently.
+
+As a user, if I try to go to the Pantry tab on the navigation bar, if I am not logged in, it will to the sign in and authentication page so I can either log in or create a new account before I can start adding information and food to my pantry.
 
 As a logged-in user, I want nutritional values so I can make sure I am eating a balanced diet. I want nutritional values for each individual ingredient and overall calories for recipes of my choosing. I also want shelf life of each individual ingredient, especially perishables, noting down the date I bought the ingredient so I can easily get notifications when certain ingredients are starting to go bad or when they should be thrown out.
 
-As a frequent user, I want to be able to save recipes and restaurants I like so I can easily refer back to my favorites. I want to have different lists: a list for favorite restaurants and a list for favorite recipes and a list for favorite ingredients.
+As a frequent user, I want to be able to save recipes and restaurants I like so I can easily refer back to my favorites. I want to be able to create and have different lists: a list for favorite restaurants and a list for favorite recipes and a list for favorite ingredients.
 
 As a user, I want to either create a new account or log back in to my account using my Facebook or Google login for easy authentication. Or I can use a regular email address If I want to keep my account separate.
+
+As a user, if I cannot sign in, I want to be able to reset my password using my email address so I can continue to use the site and ensure my data remains safe and secure.
