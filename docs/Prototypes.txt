@@ -1,0 +1,8 @@
+We have chosen to use MEAN stack.
+
+MongoDB
+Express
+Angular
+Node.JS
+
+We considered using React or MySQL instead, but ultimately we decided to use Javascript because most of us were familiar with the language. Additionally, it is the language that Professor Donham writes his demos in. A reason to use MEAN stack was that some of our members took his CS400 class and learned MEAN in that class, so they were familiar with this tech stack. 
