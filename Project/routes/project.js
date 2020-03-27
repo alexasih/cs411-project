@@ -3,12 +3,13 @@ const router = express.Router();
 const pug = require('pug');
 const compiledFunction = pug.compileFile('views/project.pug');
 const request = require('request');
+const db = require('../mongo/mongo');
 
 router.route('/')
     .get(function (req, res, next) {
         let arrayIngredients = [];
         const ingredient = 'apple';
-        const apiKey = 'secret sauce';
+        const apiKey = process.env.API_KEY;
         const url = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}&ingredients=${ingredient}&number=1`;
 
         request(url, function (err, response, body) {
@@ -31,6 +32,14 @@ router.route('/')
         });
 
     });
+
+db.connect((err, client) => {
+    if (err) {
+        console.log(`ERR: ${err}`);
+    } else {
+        console.log(`Connected`);
+    }
+});
 
 module.exports = router;
 
