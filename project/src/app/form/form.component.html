@@ -1,0 +1,14 @@
+<form [formGroup]="contactFormGroup">
+
+  <label>City:
+    <input type="text" formControlName="city" required>
+  </label>
+
+  <button type="submit" (click)="addWeather()">Query</button>
+
+  <div *ngIf="contactFormGroup.get('city').errors">
+    City has errors and is required.
+  </div>
+</form>
+
+Status: {{this.contactFormGroup.value.city}}<br/>
