@@ -1,0 +1,12 @@
+We are using MongoDB, a document-based data store.
+
+Commented JSON schema:
+-format and expected values of each field
+-which fields are required
+-note on which fields to use for keys for each schema
+-cache information
+
+
+Our sequence diagram can be viewed at this link:
+
+https://www.lucidchart.com/invitations/accept/520c021c-0d60-4bc0-9675-f28e99b10ac4
