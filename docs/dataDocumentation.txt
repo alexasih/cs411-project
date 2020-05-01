@@ -14,30 +14,30 @@ IN RECIPEDATA (all the following fields are required):
     "missedIngredients": this stores all the information regarding each ingredient that we are not looking up but still need for the recipe
     [
                 {
-                    "id": 2064, **KEY FOR SCHEMA**
-                    "amount": 10.0,
-                    "unit": "",
-                    "unitLong": "",
-                    "unitShort": "",
-                    "aisle": "Produce;Spices and Seasonings",
-                    "name": "mint leaves",
-                    "original": "10 to 12 mint leaves, or to taste",
-                    "originalString": "10 to 12 mint leaves, or to taste",
-                    "originalName": "mint leaves, or to taste",
-                    "metaInformation": [
+                    "id": 2064, **KEY FOR SCHEMA**, unique ingredient id
+                    "amount": 10.0, amount of ingredient required
+                    "unit": "", unit of ingredient
+                    "unitLong": "", long unit 
+                    "unitShort": "", short unit
+                    "aisle": "Produce;Spices and Seasonings", where to find in grocery store
+                    "name": "mint leaves", name of ingredient
+                    "original": "10 to 12 mint leaves, or to taste", original wording for recipe
+                    "originalString": "10 to 12 mint leaves, or to taste", original wording as a string
+                    "originalName": "mint leaves, or to taste", original wording as name
+                    "metaInformation": extra information here [ 
                         "to taste"
                     ],
-                    "meta": [
+                    "meta": extra information here[
                         "to taste"
                     ],
-                    "image": "https://spoonacular.com/cdn/ingredients_100x100/mint.jpg"
+                    "image": image URL of ingredient, example - "https://spoonacular.com/cdn/ingredients_100x100/mint.jpg"
                 }
             ],
             "usedIngredients": this stores all the information regarding each ingredient that we have used to look up the recipe
             [
                 {
                     "id": 9266, **KEY FOR SCHEMA**
-                    "amount": 1.0,
+                    "amount": 1.0, information same as explained in missedIngredients
                     "unit": "",
                     "unitLong": "",
                     "unitShort": "",
