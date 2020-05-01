@@ -6,6 +6,68 @@ Commented JSON schema:
 -note on which fields to use for keys for each schema
 -cache information
 
+IN RECIPEDATA (all the following fields are required):
+{
+    recipeID: this is the specific recipe ID given by spoonacular to access this recipe, **KEY FOR SCHEMA**
+    recipeTitle: recipe title,
+    recipeImage: url link to image of recipe,
+    "missedIngredients": this stores all the information regarding each ingredient that we are not looking up but still need for the recipe
+    [
+                {
+                    "id": 2064, **KEY FOR SCHEMA**
+                    "amount": 10.0,
+                    "unit": "",
+                    "unitLong": "",
+                    "unitShort": "",
+                    "aisle": "Produce;Spices and Seasonings",
+                    "name": "mint leaves",
+                    "original": "10 to 12 mint leaves, or to taste",
+                    "originalString": "10 to 12 mint leaves, or to taste",
+                    "originalName": "mint leaves, or to taste",
+                    "metaInformation": [
+                        "to taste"
+                    ],
+                    "meta": [
+                        "to taste"
+                    ],
+                    "image": "https://spoonacular.com/cdn/ingredients_100x100/mint.jpg"
+                }
+            ],
+            "usedIngredients": this stores all the information regarding each ingredient that we have used to look up the recipe
+            [
+                {
+                    "id": 9266, **KEY FOR SCHEMA**
+                    "amount": 1.0,
+                    "unit": "",
+                    "unitLong": "",
+                    "unitShort": "",
+                    "aisle": "Produce",
+                    "name": "pineapple",
+                    "original": "1 ripe pineapple, cored and sliced (about 3 cups of pineapple chunks)",
+                    "originalString": "1 ripe pineapple, cored and sliced (about 3 cups of pineapple chunks)",
+                    "originalName": "ripe pineapple, cored and sliced (about 3 cups of pineapple chunks)",
+                    "metaInformation": [
+                        "cored",
+                        "ripe",
+                        "sliced",
+                        "( 3 cups of pineapple chunks)"
+                    ],
+                    "meta": [
+                        "cored",
+                        "ripe",
+                        "sliced",
+                        "( 3 cups of pineapple chunks)"
+                    ],
+                    "image": "https://spoonacular.com/cdn/ingredients_100x100/pineapple.jpg"
+                }
+            ],
+}
+
+Cache information for recipedata:
+In project.js, we use the cache to check and see if we already have looked up and saved a particular recipe. If so, we do not need to call the API again
+which wastes time, and instead we just look it up in the database, recipedata. If it is found, then we can look up the information and continue. Otherwise, we
+must insert a new recipe into the database.
+
 
 Our sequence diagram can be viewed at this link:
 
