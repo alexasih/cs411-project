@@ -18,15 +18,15 @@ router.route('/')
             if (err) {
                 console.log('error:', err);
             } else {
-                let currentWeather = JSON.parse(body);
-                if (currentWeather.main == undefined || currentWeather.weather == undefined) {
+                let current = JSON.parse(body);
+                if (current.main == undefined || current.id == undefined) {
                     res.send(({
-                        weather: 'Error, please try again'
+                        recipeID: 'Error, please try again'
                     }));
                 } else {
-                    mongo.collection('recipedata').find({'temperature': `${currentWeather.main.temp}`}).count((err, countValue) => {
+                    mongo.collection('recipedata').find({'usedIngredients': `${req.body.ingredientName}`}).count((err, countValue) => {
                         if (countValue > 0) {
-                            mongo.collection('recipedata').findOne({'temperature': `${currentWeather.main.temp}`}, (err, result) => {
+                            mongo.collection('recipedata').findOne(findOne({'usedIngredients': `${req.body.ingredientName}`}, (err, result) => {
                                 if (err) throw err;
                                 console.log(result);
                                 console.log("Already in DB");
@@ -47,7 +47,7 @@ router.route('/')
                                 usedIngredients: `${current[0].usedIngredients}`
                             });
 
-                            mongo.collection('recipedata').findOne({'temperature': `${currentWeather.main.temp}`}, (err, result) => {
+                            mongo.collection('recipedata').findOne({'usedIngredients': `${req.body.ingredientName}`}, (err, result) => {
                                 if (err) throw err;
                               console.log("Not in DB yet");
                                 res.send(({
@@ -108,7 +108,7 @@ router.route('/db')
         let current = JSON.parse(body);
         if (current.main == undefined || current.id == undefined) {
           res.send(({
-            weather: 'Error, please try again'
+            recipeID: 'Error, please try again'
           }));
         } else {
 
@@ -120,14 +120,14 @@ router.route('/db')
               usedIngredients: `${current[0].usedIngredients}`
           }))
 
-          mongo.collection('recipedata').findOne({'city': `${req.body.city}`}, (err, result) => {
+          mongo.collection('recipedata').findOne({'usedIngredients': `${req.body.ingredientName}`}, (err, result) => {
             if (err) throw err;
             res.send({
                 recipeID: `${result.id}`,
                 recipeTitle: `${result.title}`,
                 recipeImage: `${result.image}`,
                 missedIngredients: `${result.missedIngredients}`,
-                usedIngredients: `${result.usedIngredients}`
+                usedIngredients: `${result.usedIngredients}`,
             })
           })
         }
