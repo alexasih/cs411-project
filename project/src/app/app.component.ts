@@ -8,12 +8,12 @@ import { RESULT } from './models/resultModel';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'project Weather App';
+  title = 'CS411 Project Recipes';
   private selectedResult: RESULT = null;
   results: RESULT[][] = [];
 
   getResults(): void {
-    this.apiService.getWeatherResults()
+    this.apiService.getRecipeResults()
       .subscribe(results => {
         this.results = Array.of(results);
       });

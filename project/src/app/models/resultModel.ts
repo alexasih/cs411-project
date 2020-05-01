@@ -1,3 +1,3 @@
 export class RESULT {
-  city: string;
+  ingredientName: string;
 }

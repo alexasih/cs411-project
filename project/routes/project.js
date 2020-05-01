@@ -6,10 +6,12 @@ const db = require('../mongo/mongo');
 router.route('/')
     .get(function (req, res, next) {
         console.log(req);
-        const apiKey = process.env.MY_WEATHER_API_KEY;
-        const urlPart1 = 'http://api.openweathermap.org/data/2.5/weather?q='
-        const urlPart2 = '&appid=';
-        const newUrl = urlPart1 + req.body.city + urlPart2 + apiKey;
+        const apiKey = process.env.API_KEY;
+        const urlPart1 = 'https://api.spoonacular.com/recipes/findByIngredients?apiKey='
+        const urlPart2 = '&ingredients=';
+        const urlPart3 = '&number=1';
+        const newUrl = urlPart1 + apiKey + urlPart2 + req.body.ingredientName + urlPart3;
+
         let mongo = db.getDB();
 
         request(url, function (err, response, body) {
@@ -22,32 +24,38 @@ router.route('/')
                         weather: 'Error, please try again'
                     }));
                 } else {
-                    mongo.collection('weatherdata').find({'temperature': `${currentWeather.main.temp}`}).count((err, countValue) => {
+                    mongo.collection('recipedata').find({'temperature': `${currentWeather.main.temp}`}).count((err, countValue) => {
                         if (countValue > 0) {
-                            mongo.collection('weatherdata').findOne({'temperature': `${currentWeather.main.temp}`}, (err, result) => {
+                            mongo.collection('recipedata').findOne({'temperature': `${currentWeather.main.temp}`}, (err, result) => {
                                 if (err) throw err;
                                 console.log(result);
                                 console.log("Already in DB");
                                 res.send(({
-                                  description: `${result.description}`,
-                                  temperature: `${result.temperature}`,
-                                  city: `${result.city}`
+                                    recipeID: `${result.id}`,
+                                    recipeTitle: `${result.title}`,
+                                    recipeImage: `${result.image}`,
+                                    missedIngredients: `${result.missedIngredients}`,
+                                    usedIngredients: `${result.usedIngredients}`
                                 }));
                             });
                         } else {
-                            mongo.collection('weatherdata').insertOne({
-                                description: `${currentWeather.weather[0].description}`,
-                                temperature: `${currentWeather.main.temp}`,
-                                city: `${currentWeather.name}`
+                            mongo.collection('recipedata').insertOne({
+                                recipeID: `${current[0].id}`,
+                                recipeTitle: `${current[0].title}`,
+                                recipeImage: `${current[0].image}`,
+                                missedIngredients: `${current[0].missedIngredients}`,
+                                usedIngredients: `${current[0].usedIngredients}`
                             });
 
-                            mongo.collection('weatherdata').findOne({'temperature': `${currentWeather.main.temp}`}, (err, result) => {
+                            mongo.collection('recipedata').findOne({'temperature': `${currentWeather.main.temp}`}, (err, result) => {
                                 if (err) throw err;
                               console.log("Not in DB yet");
                                 res.send(({
-                                    description: `${result.description}`,
-                                    temperature: `${result.temperature}`,
-                                    city: `${result.city}`
+                                    recipeID: `${result.id}`,
+                                    recipeTitle: `${result.title}`,
+                                    recipeImage: `${result.image}`,
+                                    missedIngredients: `${result.missedIngredients}`,
+                                    usedIngredients: `${result.usedIngredients}`
                                 }));
                             });
                         }
@@ -57,9 +65,37 @@ router.route('/')
         });
     });
 
+// router.route('/')
+//     .get(function (req, res, next) {
+//         let arrayIngredients = [];
+//         const ingredient = 'apple';
+//         const apiKey = process.env.API_KEY;
+//         const url = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}&ingredients=${ingredient}&number=1`;
+//
+//         request(url, function (err, response, body) {
+//             if(err){
+//                 console.log('error:', err);
+//             } else {
+//
+//                 let current = JSON.parse(body);
+//                 console.log(current);
+//                 if(current[0].id == undefined){
+//                     res.send(compiledFunction({
+//                         info: 'Error, please try again'
+//                     }));
+//                 } else {
+//                     res.send(compiledFunction({
+//                         info: `The ingredient ID we are looking for is ${current[0].id}`
+//                     }));
+//                 }
+//             }
+//         });
+//
+//     });
+
 router.route('/db')
   .post(function(req, res, next) {
-    const apiKey = process.env.MY_WEATHER_API_KEY;
+    const apiKey = process.env.API_KEY;
     const urlPart1 = 'http://api.openweathermap.org/data/2.5/weather?q='
     const urlPart2 = '&appid=';
     const newUrl = urlPart1 + req.body.city + urlPart2 + apiKey;
@@ -69,58 +105,34 @@ router.route('/db')
       if (err) {
         console.log('error:', err);
       } else {
-        let currentWeather = JSON.parse(body);
-        if (currentWeather.main == undefined || currentWeather.weather == undefined) {
+        let current = JSON.parse(body);
+        if (current.main == undefined || current.id == undefined) {
           res.send(({
             weather: 'Error, please try again'
           }));
         } else {
 
-          mongo.collection('weatherdata').insertOne(({
-            description: `${currentWeather.weather[0].description}`,
-            temperature: `${currentWeather.main.temp}`,
-            city: `${req.body.city}`
+          mongo.collection('recipedata').insertOne(({
+              recipeID: `${current[0].id}`,
+              recipeTitle: `${current[0].title}`,
+              recipeImage: `${current[0].image}`,
+              missedIngredients: `${current[0].missedIngredients}`,
+              usedIngredients: `${current[0].usedIngredients}`
           }))
 
-          mongo.collection('weatherdata').findOne({'city': `${req.body.city}`}, (err, result) => {
+          mongo.collection('recipedata').findOne({'city': `${req.body.city}`}, (err, result) => {
             if (err) throw err;
             res.send({
-              description: `${result.description}`,
-              temperature: `${result.temperature}`,
-              city: `${result.city}`
+                recipeID: `${result.id}`,
+                recipeTitle: `${result.title}`,
+                recipeImage: `${result.image}`,
+                missedIngredients: `${result.missedIngredients}`,
+                usedIngredients: `${result.usedIngredients}`
             })
           })
         }
       }
     })
-  });
-
-router.route('/')
-  .get(function (req, res, next) {
-    let arrayIngredients = [];
-    const ingredient = 'apple';
-    const apiKey = process.env.API_KEY;
-    const url = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}&ingredients=${ingredient}&number=1`;
-
-    request(url, function (err, response, body) {
-      if(err){
-        console.log('error:', err);
-      } else {
-
-        let current = JSON.parse(body);
-        console.log(current);
-        if(current[0].id == undefined){
-          res.send(compiledFunction({
-            info: 'Error, please try again'
-          }));
-        } else {
-          res.send(compiledFunction({
-            info: `The ingredient ID we are looking for is ${current[0].id}`
-          }));
-        }
-      }
-    });
-
   });
 
 

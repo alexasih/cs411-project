@@ -13,17 +13,17 @@ export class FormComponent implements OnInit {
   @Input() results: RESULT[] = [];
 
   my: any = {
-    city: ''
+    ingredientName: ''
   }
 
-  addWeather( ): void {
-    let newWeather: RESULT = {
-      city: this.contactFormGroup.value.city
+  addRecipe( ): void {
+    let newRecipe: RESULT = {
+      ingredientName: this.contactFormGroup.value.ingredientName
     }
-    this.apiService.addWeatherData(newWeather)
+    this.apiService.addRecipeData(newRecipe)
       .subscribe((data) => {
-        console.log(`data: ${data.city}`);
-        this.results.push(data.city);
+        console.log(`data: ${data.ingredientName}`);
+        this.results.push(data.ingredientName);
         console.log(`Results: ${this.results}`)
       });
   }

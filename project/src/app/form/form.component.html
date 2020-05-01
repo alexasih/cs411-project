@@ -4,7 +4,7 @@
     <input type="text" formControlName="city" required>
   </label>
 
-  <button type="submit" (click)="addWeather()">Query</button>
+  <button type="submit" (click)="addRecipe()">Query</button>
 
   <div *ngIf="contactFormGroup.get('city').errors">
     City has errors and is required.
